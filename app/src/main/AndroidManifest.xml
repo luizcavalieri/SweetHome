@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="au.com.interactivehippo.sweethome" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk android:minSdkVersion="11" />
+
+    <application
+        android:allowBackup="true"
+        android:logo="@drawable/sweethome_logo_supersmall_white"
+        android:icon="@drawable/sweethome_logo_supersmall_white"
+        android:label="@string/app_name"
+        android:theme="@style/CustomActionBarTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TaskListActivity"
+             >
+        </activity>
+        <activity
+            android:name=".TaskDetailForm"
+            >
+        </activity>
+        <activity
+            android:name=".SignupFormActivity"
+            >
+        </activity>
+        <activity
+            android:name=".MainMenuGridActivity"
+            >
+        </activity>
+        <activity
+            android:name=".UnderConstructionActivity"
+            >
+        </activity>
+
+    </application>
+
+</manifest>

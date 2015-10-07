@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:src="@drawable/sweet_home_logo_small"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/logoimage"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="firstname"
+        android:backgroundTint="#b9bec4"
+        android:id="@+id/user_firstname"
+        android:singleLine="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#b9bec4"
+        android:id="@+id/user_email"
+        android:singleLine="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_password"
+        android:layout_marginTop="20dp"
+        android:hint="password"
+        android:backgroundTint="#b9bec4"
+        android:inputType="textPassword"
+        android:singleLine="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_user_password"
+        android:layout_marginTop="20dp"
+        android:hint="password confirmation"
+        android:backgroundTint="#b9bec4"
+        android:inputType="textPassword"/>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/back_login_page"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/row_back"
+            android:layout_marginTop="20dp"
+            android:background="#0078ff"
+            android:textColor="#ffffff"
+            android:onClick="BackLoginPage"/>
+
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:id="@+id/create_user_database"
+            android:layout_marginLeft="5dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Create Account"
+            android:background="#0078ff"
+            android:textColor="#ffffff"
+            android:onClick="CreateUser"/>
+
+
+    </GridLayout>
+
+
+
+</LinearLayout>

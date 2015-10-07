@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskDetailForm"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Detail"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textSize="25dp"
+        />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="300dp"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:maxLength="15"
+        android:hint="Title"
+        android:id="@+id/task_title"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text=" Due"
+            android:drawableLeft="@drawable/icon_calendar"
+            android:layout_gravity="center"
+            android:onClick="setDate"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/blue_sweet_home"
+            android:textColor="#ffffff"
+            android:padding="15dp"
+            android:id="@+id/datePicker"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    /    /    "
+            android:textSize="25dp"
+            android:id="@+id/text_view_due_date_task"
+            android:editable="false"
+            android:layout_gravity="bottom"/>
+
+    </LinearLayout>
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/spinUsers"
+        android:layout_marginTop="10dp">
+
+    </Spinner>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/task_category"
+        android:baselineAligned="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categories"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clean"
+                android:id="@+id/radius_cat_clean"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fix"
+                android:id="@+id/radius_cat_fix"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="organize"
+                android:id="@+id/radius_cat_organize"
+                />
+        </LinearLayout>
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="description"
+        android:width="300dp"
+        android:height="120dp"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/task_description"
+        android:maxLength="80"
+        />
+
+    <CheckedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+        android:src="@drawable/ic_add_circle_white_24dp"
+        android:transformPivotX="@dimen/abc_control_corner_material"
+        android:layout_gravity="center"
+        android:onClick="AddTask"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue_sweet_home"
+        android:textColor="#ffffff"
+        android:padding="5dp"
+        />
+
+    </LinearLayout>
+</ScrollView>
