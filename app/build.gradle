@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0 rc3"
+    compileSdkVersion 23
+    buildToolsVersion "21.0"
+    useLibrary 'org.apache.http.legacy'
+
 
     defaultConfig {
         applicationId "au.com.interactivehippo.sweethome"

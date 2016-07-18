@@ -1,19 +1,13 @@
 package au.com.interactivehippo.sweethome;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,11 +19,31 @@ public class TaskListActivity extends ActionBarActivity implements FetchDataList
     private CustomAdapter customAdapter;
     private CustomAdapter listAdapter;
 
+    User userLogged = new User();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+
+        userLogged = (User) intent.getSerializableExtra("user");
+
+        Toast.makeText(this, "user Logged: "+userLogged.getUserEmail(), Toast.LENGTH_SHORT).show();
+
+
         setContentView(R.layout.task_list);
+
+        TextView txtView = (TextView)findViewById(R.id.userNameTaskList);
+
+        txtView.setText("Tasks for "+userLogged.getUserFirstname());
+
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setLogo(R.drawable.sweethome_logo_supersmall_white);
+        ab.setDisplayUseLogoEnabled(true);
+        ab.setDisplayShowHomeEnabled(true);
+
         initView();
 
     }
@@ -80,6 +94,5 @@ public class TaskListActivity extends ActionBarActivity implements FetchDataList
 
         startActivityForResult(changeScreens, result);
     }
-
 
 }

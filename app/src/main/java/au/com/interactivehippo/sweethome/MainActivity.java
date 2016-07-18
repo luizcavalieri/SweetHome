@@ -1,21 +1,14 @@
 package au.com.interactivehippo.sweethome;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -23,18 +16,20 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends FragmentActivity {
 
+    User userLogged = new User();
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
     }
@@ -61,7 +56,7 @@ public class MainActivity extends FragmentActivity {
         EditText passwordET = (EditText) findViewById(R.id.login_password);
 
         if(!isEmpty(usernameET)&&!isEmpty(passwordET)){
-            Toast.makeText(this, "Getting into", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Loging in...", Toast.LENGTH_SHORT).show();
             new LoginTask(this).execute();
         }
         else
@@ -114,7 +109,12 @@ public class MainActivity extends FragmentActivity {
                         String result = json.getString("success");
                         if(Integer.parseInt(result) == 1)
                         {
+                            userLogged.setUserEmail(json.getString("user_email"));
+                            userLogged.setUserFirstname(json.getString("user_firstname"));
+                            userLogged.setUserLastname(json.getString("user_lastname"));
+                            userLogged.setUserId(Integer.parseInt(json.getString("user_id")));
                             success = true;
+
                         }
                         else
                         {
@@ -141,10 +141,12 @@ public class MainActivity extends FragmentActivity {
             //super.onPostExecute(aVoid);
             if(success)
             {
-                Toast.makeText(CurrentActivity, "Login Successful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CurrentActivity, "Welcome, "+userLogged.getUserFirstname()+"!", Toast.LENGTH_SHORT).show();
+                EditText usernameET = (EditText) findViewById(R.id.login_username);
 
                 //go to next screen
                 Intent nextScreen = new Intent(CurrentActivity, MainMenuGridActivity.class);
+                nextScreen.putExtra("user", userLogged);
                 startActivity(nextScreen);
             }
             else

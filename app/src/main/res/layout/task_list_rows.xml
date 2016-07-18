@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/checkboxTaskDone"
             android:padding="5dp"
+
+
             />
 
     </LinearLayout>
@@ -53,19 +55,17 @@
             android:textStyle="normal"
             android:id="@+id/dueDateTask"
             android:text="26/08/2015"/>
-    </LinearLayout>
 
+    </LinearLayout>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/right_arrow_detail"
         android:background="#f5f5f5"
         android:layout_gravity="right"
-        android:onClick="goTaskDetail"
         android:padding="15dp"
+        android:id="@+id/edit_task"
         />
-
-
 
 
 </LinearLayout>
