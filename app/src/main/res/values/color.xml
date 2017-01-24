@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue_sweet_home">#0078ff</color>
+    <color name="light_blue_sweet_home">#4CA0FF</color>
+    <color name="dark_blue_sweet_home">#003C7F</color>
     <color name="grey_sweet_home">#D0D4D8</color>
 
 

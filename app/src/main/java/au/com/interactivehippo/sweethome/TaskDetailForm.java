@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,17 +47,34 @@ import java.util.Map;
 /**
  * Created by Admin on 9/18/2015.
  */
-public class TaskDetailForm extends ActionBarActivity{
+public class TaskDetailForm extends ActionBarActivity implements FetchDataListenerUser {
 
     private DatePicker datePicker;
     private Calendar calendar;
     private TextView textViewDueDateTask;
     private int year, month, day;
+    private Spinner spinnerUser;
+    // array list for spinner adapter
+    private ArrayList<User> userList;
+    private TextView txtUser;
+
+    private ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_detail_form);
+        setContentView(R.layout.task_detail_form);  
+
+
+        spinnerUser = (Spinner) (findViewById(R.id.spinUsers));
+
+        userList = new ArrayList<User>();
+
+        // spinner item select listener
+        //spinnerUser.setOnItemSelectedListener(this);
+
+        populateSpinner();
 
         textViewDueDateTask = (TextView) findViewById(R.id.text_view_due_date_task);
         calendar = Calendar.getInstance();
@@ -65,6 +83,7 @@ public class TaskDetailForm extends ActionBarActivity{
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
+
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setLogo(R.drawable.sweethome_logo_supersmall_white);
@@ -98,13 +117,7 @@ public class TaskDetailForm extends ActionBarActivity{
              //arg2 = month;
              //arg3 = day;
 
-
-            showDate(arg1, arg2 + 1, arg3);
-
            //datePicker.init(year, month, day, dateSetListener);
-
-
-
 
         }
     };
@@ -125,6 +138,76 @@ public class TaskDetailForm extends ActionBarActivity{
 
 
     }
+
+    private void populateSpinner() {
+        dialog = ProgressDialog.show(this, "", "Loading...");
+
+        String url = "http://iamlc.mobi/userList.php";
+        FetchDataUser user = new FetchDataUser(this);
+        user.execute(url);
+
+    }
+
+    @Override
+    public void onFetchCompleteUser(List<User> data) {
+        // dismiss the progress dialog
+        if (dialog != null) dialog.dismiss();
+        // create new adapter
+
+        //ListView theListView = (ListView) findViewById(R.id.tasksListView);
+
+        List<String> lables = new ArrayList<String>();
+
+        //txtUser.setText("");
+
+
+        // need to insert the 'data' into the userList
+        for (int i = 0; i < userList.size(); i++) {
+            lables.add(userList.get(i).getUserFirstname());
+        }
+
+        Spinner spinnerUser = (Spinner) findViewById(R.id.spinUsers);
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, lables);
+
+        spinnerAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // set the adapter to list
+        spinnerUser.setAdapter(spinnerAdapter);
+        //setCustomAdapter(adapter);
+
+    }
+
+    @Override
+    public void onFetchFailureUser(String msg) {
+        // dismiss the progress dialog
+        if(dialog != null)  dialog.dismiss();
+        // show failure message
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+//    private void populateSpinner() {
+//        List<String> lables = new ArrayList<String>();
+//
+//        txtUser.setText("");
+//
+//        for (int i = 0; i < userList.size(); i++) {
+//            lables.add(userList.get(i).getUserFirstname());
+//        }
+//
+//        // Creating adapter for spinner
+//        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, lables);
+//
+//        // Drop down layout style - list view with radio button
+//        spinnerAdapter
+//                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // attaching data adapter to spinner
+//        spinnerUser.setAdapter(spinnerAdapter);
+//    }
 
     public void AddTask(View view) {
         EditText taskTitleET = (EditText) findViewById(R.id.task_title);

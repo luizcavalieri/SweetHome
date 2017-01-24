@@ -2,18 +2,23 @@ package au.com.interactivehippo.sweethome;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Admin on 9/18/2015.
  */
-public class TaskListActivity extends ActionBarActivity implements FetchDataListener {
+public class TaskListActivity extends AppCompatActivity implements FetchDataListener {
 
     private ProgressDialog dialog;
     private CustomAdapter customAdapter;
@@ -35,10 +40,6 @@ public class TaskListActivity extends ActionBarActivity implements FetchDataList
 
         setContentView(R.layout.task_list);
 
-        TextView txtView = (TextView)findViewById(R.id.userNameTaskList);
-
-        txtView.setText("Tasks for "+userLogged.getUserFirstname());
-
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setLogo(R.drawable.sweethome_logo_supersmall_white);
         ab.setDisplayUseLogoEnabled(true);
@@ -51,7 +52,9 @@ public class TaskListActivity extends ActionBarActivity implements FetchDataList
     private void initView() {
         dialog = ProgressDialog.show(this, "", "Loading...");
 
-        String url = "http://iamlc.mobi/taskList.php";
+        Toast.makeText(this, "user Logged: "+userLogged.getUserId(), Toast.LENGTH_SHORT).show();
+
+        String url = "http://iamlc.mobi/taskList.php?user_id="+userLogged.getUserId();
         FetchDataTask task = new FetchDataTask(this);
         task.execute(url);
 
@@ -83,7 +86,7 @@ public class TaskListActivity extends ActionBarActivity implements FetchDataList
         if(dialog != null)  dialog.dismiss();
         // show failure message
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-       
+
     }
 
 

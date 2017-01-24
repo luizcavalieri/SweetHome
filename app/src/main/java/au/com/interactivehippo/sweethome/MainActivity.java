@@ -142,7 +142,6 @@ public class MainActivity extends FragmentActivity {
             if(success)
             {
                 Toast.makeText(CurrentActivity, "Welcome, "+userLogged.getUserFirstname()+"!", Toast.LENGTH_SHORT).show();
-                EditText usernameET = (EditText) findViewById(R.id.login_username);
 
                 //go to next screen
                 Intent nextScreen = new Intent(CurrentActivity, MainMenuGridActivity.class);
